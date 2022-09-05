@@ -1,5 +1,5 @@
 import "./App.css";
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useCallback, useRef, useState, useEffect, useMemo } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 
@@ -28,7 +28,7 @@ function App() {
     getDate();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
+  const onCreate = useCallback((author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
       author,
@@ -38,11 +38,10 @@ function App() {
       id: dateId.current,
     };
     dateId.current += 1;
-    setData([newItem, ...data]);
-  };
+    setData((data) => [newItem, ...data]);
+  }, []);
 
   const onRemove = (targetId) => {
-    console.log(targetId);
     const newDiaryList = data.filter((item) => item.id !== targetId);
     setData(newDiaryList);
   };
