@@ -5,12 +5,21 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
+// components
+import MyButton from "./components/MyButton";
+import MyHeader from "./components/MyHeader";
 
 function App() {
   return (
     <BrowserRouter>
+      <MyHeader
+        headText={"App"}
+        leftChild={<MyButton text={"left button"} />}
+        rightChild={<MyButton text={"right child"} />}
+      />
       <div className="App">
         <h2>App.js</h2>
+        <MyButton text={"text"} />
         <Link to={"/"}>Home</Link>
         <br />
         <Link to={"/diary"}>Diary</Link>
