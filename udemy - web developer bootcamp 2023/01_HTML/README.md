@@ -1,2 +1,2 @@
 # HTML
-- [chicken](chicken.html)
+- [chicken](chicken.html) - p & headings
