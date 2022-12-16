@@ -4,3 +4,5 @@
     - html, head, body
     - unorderd & ordered lists
     - anchor(hyperlinks)
+    - images
+    - comments
