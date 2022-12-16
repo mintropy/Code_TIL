@@ -2,4 +2,5 @@
 - [chicken](chicken.html)
     - p & headings
     - html, head, body
-    - unorderd & ordered lists<>
+    - unorderd & ordered lists
+    - anchor(hyperlinks)
