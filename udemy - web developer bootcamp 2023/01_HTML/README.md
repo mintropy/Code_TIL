@@ -1,2 +1,5 @@
 # HTML
-- [chicken](chicken.html) - p & headings
+- [chicken](chicken.html)
+    - p & headings
+    - html, head, body
+    - unorderd & ordered lists<>
