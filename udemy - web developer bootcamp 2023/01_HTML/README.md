@@ -7,3 +7,4 @@
     - images
     - comments
     - div & span
+    - hr, br, sup, sub
