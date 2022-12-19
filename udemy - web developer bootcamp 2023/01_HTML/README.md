@@ -8,3 +8,4 @@
     - comments
     - div & span
     - hr, br, sup, sub
+    - entities
