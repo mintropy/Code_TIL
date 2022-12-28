@@ -9,3 +9,4 @@
     - div & span
     - hr, br, sup, sub
     - entities
+    - semantics : main, nav, section, header, footer
