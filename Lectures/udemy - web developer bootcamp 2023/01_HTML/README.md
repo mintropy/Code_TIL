@@ -11,3 +11,4 @@
     - entities
     - semantics : main, nav, section, header, footer
 - [Emmet](emmetdemo.html)
+- [Table](heaviest_birds.html)
