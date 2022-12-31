@@ -23,7 +23,7 @@
     </p>
     <p>
       <label for="number">Enter a Number : 
-        <input id="number" type="number" placeholder="number" name="num">
+        <input id="number" type="number" placeholder="number" name="num" min="1" max="1000" step="2">
       </label>
     </p>
     <button type="submit">Submit</button>
@@ -60,6 +60,15 @@
         <option value="veg">Vegiterian</option>
         <option value="steak">Steak</option>
       </select>
+    </p>
+    <p>
+      <label for="cheese">Amount for cheese</label>
+      <input type="range" id="cheese" min="1" max="100" step="7" value="75" name="cheese_leve">
+    </p>
+    <p>
+      <label for="requests">Any Special Requests?</label>
+      <br>
+      <textarea name="requests" id="requests" cols="45" rows="10" placeholder="Type Something"></textarea>
     </p>
     <button>submit</button>
   </form>
