@@ -39,3 +39,16 @@ span {
 footer a {
   color: #e63946;
 }
+
+input + button {
+  background-color: pink;
+}
+
+h2 + button {
+  font-size: 20px;
+  background-color: magenta;
+}
+
+footer > a {
+  color: #457b9d;
+}
