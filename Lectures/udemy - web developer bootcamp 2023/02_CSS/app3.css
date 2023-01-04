@@ -91,3 +91,8 @@ p::first-line {
 p::selection {
   background-color: #fcbc49;
 }
+
+h1,
+h2 {
+  color: yellow;
+}
