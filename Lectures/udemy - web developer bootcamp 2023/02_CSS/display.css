@@ -1,11 +1,26 @@
 h1 {
   background-color: palegoldenrod;
   border: 1px solid black;
-  display: inline;
+  /* display: inline; */
+  display: none;
+  width: 500px;
+  padding: 50px;
+  margin: 50px;
 }
 
 span {
-  background-color: paleturquoise;
+  background-color: palevioletred;
   border: 1px solid black;
-  display: block;
+  width: 500px;
+  padding: 50px;
+  margin: 50px;
+  display: inline-block;
+}
+
+div {
+  height: 200px;
+  width: 200px;
+  background-color: olivedrab;
+  border: 5px dotted black;
+  display: inline-block;
 }
