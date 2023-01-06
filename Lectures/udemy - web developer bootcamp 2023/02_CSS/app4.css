@@ -1,13 +1,23 @@
+body {
+  margin: 0;
+}
+
 div {
   width: 200px;
   height: 200px;
 }
 
+span {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
 h1 {
   background-color: pink;
-  width: 100px;
+  width: 200px;
   padding-left: 100px;
   padding-top: 50px;
+  margin: 0;
 }
 
 #one {
@@ -16,6 +26,8 @@ h1 {
   border-color: black;
   border-style: solid;
   /* box-sizing: border-box; */
+  margin-left: 50px;
+  margin-bottom: 100px;
 }
 
 #two {
@@ -25,6 +37,7 @@ h1 {
   border-style: dashed;
   border-left-width: 8px;
   padding-right: 50px;
+  margin: 200px;
 }
 
 #three {
