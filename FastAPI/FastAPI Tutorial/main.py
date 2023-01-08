@@ -1,7 +1,7 @@
 from enum import Enum
 
 from fastapi import FastAPI, Path, Query, Body
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
@@ -15,7 +15,7 @@ class ModelName(str, Enum):
 class Item(BaseModel):
     id: int
     name: str
-    description: str | None = None
+    description: str | None = Field(default=None, max_length=300)
     price: int
 
 
