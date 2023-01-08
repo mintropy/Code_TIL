@@ -5,3 +5,4 @@
 - [index3](index3.html), [css4](app4.css) : box model
 - [display property](display.html), [dispaly property css](display.css) : dispaly property, inline, block, inline-block
 - [units](css_unit.html), [units css](css_unit.css) : CSS units, %, em, rem
+- [opacity HTML](opacity.html), [opacity CSS](opacity.css) : opacity & alpha channel
