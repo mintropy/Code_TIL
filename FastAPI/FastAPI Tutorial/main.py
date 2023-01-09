@@ -1,15 +1,12 @@
-from enum import Enum
-
 from fastapi import FastAPI, Path, Query, Body
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 
 app = FastAPI()
 
 
-class ModelName(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
+class Image(BaseModel):
+    url: HttpUrl
+    name: str
 
 
 class Item(BaseModel):
@@ -17,6 +14,13 @@ class Item(BaseModel):
     name: str
     description: str | None = Field(default=None, max_length=300)
     price: int
+    image: list[Image] | None = None
+
+
+class Offer(BaseModel):
+    name: str
+    price: float
+    items: list[Item]
 
 
 @app.get("/")
@@ -38,3 +42,13 @@ async def get_item(
         "item": item,
         "importance": importance,
     }
+
+
+@app.post("/offers/")
+async def offer(offer: Offer):
+    return offer
+
+
+@app.post("/images/")
+async def images(images: list[Image]):
+    return images
