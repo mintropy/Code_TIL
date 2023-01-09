@@ -11,3 +11,4 @@
 - [transform HTML](transform.html), [transform CSS](transform.css) : transform
 - [button_hover_example HTML](button_hover_example.html), [button_hover_example CSS](button_hover_example.css) : transition, transform, box-shadow 등을 활용한 버튼 호버 이펙트 예시
 - [background HTML](background.html), [background CSS](background.css) : backgroun 속성을 사용한 이미지, 색상 등
+- [photo blog HTML](photo_blog.html), [photo blog CSS](photo_blog.css) : Photo Blog example
