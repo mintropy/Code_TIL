@@ -7,3 +7,6 @@
 - [String palindrom check](CoreJavaTraining/reverseDemo.java) : Java 문자열 회문 확인
 - [If&Else, Loop](CoreJavaTraining/ifElseLoop.java) : 조건문, 반복문
     - [Nested Loop](CoreJavaTraining/NestedLoop.java) : 중첩 반복문
+
+### Classes & Interfaces
+- [traffic interface](ClassInterface/Traffic.java), [korean traffic implements traffic](ClassInterface/KoreanTraffic.java) : 인터페이스와 인터페이스 활용
