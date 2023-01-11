@@ -6,7 +6,7 @@ app = FastAPI()
 
 class Image(BaseModel):
     url: HttpUrl
-    name: str
+    name: str = Field(example="some name")
 
 
 class Item(BaseModel):
@@ -15,6 +15,15 @@ class Item(BaseModel):
     description: str | None = Field(default=None, max_length=300)
     price: int
     image: list[Image] | None = None
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "foo",
+                "description": "baa",
+                "price": 50,
+            }
+        }
 
 
 class Offer(BaseModel):
@@ -45,7 +54,26 @@ async def get_item(
 
 
 @app.post("/offers/")
-async def offer(offer: Offer):
+async def offer(
+    offer: Offer = Body(
+        example={
+            "name": "foo",
+            "price": 50.5,
+            "items": [
+                {
+                    "name": "foo1",
+                    "description": "baa1",
+                    "price": 30,
+                },
+                {
+                    "name": "foo2",
+                    "description": "baa2",
+                    "price": 60,
+                },
+            ],
+        }
+    )
+):
     return offer
 
 
