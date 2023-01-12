@@ -3,5 +3,6 @@
     - 2022-12-07 ~ 
 - [HTML](01_HTML/README.md)
 - [CSS](02_CSS/README.md)
+    - [CSS flexbox](02a_CSS_flexbox/README.md)
 
 ## JavaScript
