@@ -10,3 +10,6 @@
 
 ### Classes & Interfaces
 - [traffic interface](ClassInterface/Traffic.java), [korean traffic implements traffic](ClassInterface/KoreanTraffic.java) : 인터페이스와 인터페이스 활용
+
+### Array
+- [array](JavaArray/ArrayDemo.java) : Java Array
