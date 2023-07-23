@@ -1,18 +1,18 @@
 function Modal(props) {
   function cancelHandler() {
-    props.onCancel();
+    props.onCancle();
   }
   function confirmHandler() {
     props.onConfirm();
   }
 
   return (
-    <div classname="modal">
+    <div className="modal">
       <p>Are You Sure?</p>
-      <button classname="btn btn--alt" onClick={cancelHandler}>
+      <button className="btn btn--alt" onClick={cancelHandler}>
         Cancle
       </button>
-      <button classname="btn" onClick={confirmHandler}>
+      <button className="btn" onClick={confirmHandler}>
         Confirm
       </button>
     </div>
