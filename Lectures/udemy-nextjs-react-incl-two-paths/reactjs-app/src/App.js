@@ -1,3 +1,5 @@
+import Backdrop from "./components/Backdrop";
+import Modal from "./components/Modal";
 import Todo from "./components/Todo";
 
 function App() {
@@ -7,6 +9,8 @@ function App() {
       <Todo title="make todo list" />
       <Todo title="publish todo list" />
       <Todo title="my own todo list" />
+      <Modal />
+      <Backdrop />
     </div>
   );
 }
