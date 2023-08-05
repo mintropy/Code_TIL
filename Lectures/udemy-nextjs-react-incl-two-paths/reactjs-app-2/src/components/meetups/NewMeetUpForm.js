@@ -4,7 +4,7 @@ import styles from "./NewMeetUpForm.module.css";
 function NewMeetUpForm() {
   return (
     <Card>
-      <from className={styles.from}>
+      <from className={styles.form}>
         <div className={styles.control}>
           <label htmlFor="title">MeetUp Title</label>
           <input type="text" required id="title" />
