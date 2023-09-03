@@ -13,5 +13,7 @@
 - [udemy nextjs-react incl two paths - Next.js & React 완벽 정복 가이드](Lectures/udemy-nextjs-react-incl-two-paths/README.md)
     - Next.js & React
 - [생활코딩 Next.js](Lectures/생활코딩%20-%20Next/README.md)
+- [udemy go web development](Lectures/udemy%20-%20go%20web%20development/README.md)
+    - Go 웹 개발
 
 ## FastAPI
