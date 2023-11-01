@@ -31,6 +31,9 @@ export default function RootLayout({
           <br />
           <b>Parallel Routings </b>
           <Link href="/p">p</Link>
+          <br />
+          <b>Intercepting Routings </b>
+          <Link href="/i">i</Link>
           <hr />
           <div className="box">Main</div>
           {children}
