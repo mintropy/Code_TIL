@@ -35,12 +35,13 @@ SECRET_KEY = "".join([random.SystemRandom().choice(chars) for _ in range(50)])
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = "*"
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "communities",
     "rest_framework",
     "silk",
     "django.contrib.admin",
