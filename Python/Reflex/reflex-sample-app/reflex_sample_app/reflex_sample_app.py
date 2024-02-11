@@ -1,8 +1,8 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
-
 import reflex as rx
 
+from reflex_sample_app.components.nav import navbar
 from reflex_sample_app.models.account_book import AccountBook
+from reflex_sample_app.pages.articles import articles
 from rxconfig import config
 
 docs_url = "https://reflex.dev/docs/getting-started/introduction"
@@ -19,22 +19,6 @@ class State(rx.State):
         self.amount = amount
 
 
-class AccountBookState(rx.State):
-    id: int = 0
-    amount: int
-
-    def get_account_book(self):
-        with rx.session() as session:
-            self.books = session.exec(
-                AccountBook.select.where(AccountBook.id == self.id)
-            ).first()
-
-    def add_account_book(self):
-        with rx.session() as session:
-            session.add(AccountBook(amount=self.amount))
-            session.commit()
-
-
 class AccountBookTable(rx.State):
     cols: list[dict] = [
         {"title": "ID", "type": "int"},
@@ -48,20 +32,15 @@ class AccountBookTable(rx.State):
             self.data = [[book.id, book.amount] for book in books]
 
 
-@rx.page(on_load=AccountBookTable.get_account_book)
 def index() -> rx.Component:
     return rx.fragment(
-        # rx.text(State.amount, font_size=24, style={"margin": "20px"}),
+        navbar(),
         rx.hstack(
             rx.text("Amount"),
             rx.input(type="number", on_change=State.set_amount),
             rx.button("Update"),
-            style={"margin_bottom": "20px"},
+            style={"margin_bottom": "20px", "margin-top": "60px"},
         ),
-        # rx.data_editor(
-        #     columns=AccountBookTable.cols,
-        #     data=AccountBookTable.data,
-        # ),
         rx.table_container(
             rx.table(
                 headers=["id", "amount"],
@@ -72,7 +51,7 @@ def index() -> rx.Component:
                     [4, 250000],
                 ],
             ),
-            style={"padding_left": "10%", "padding_right": "10%"},
+            style={"padding-left": "10%", "padding-right": "10%"},
         ),
     )
 
@@ -82,3 +61,4 @@ style = {"margin": "10px"}
 
 app = rx.App(style=style)
 app.add_page(index)
+app.add_page(articles)
