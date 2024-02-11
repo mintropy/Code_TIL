@@ -8,3 +8,5 @@ __pycache__
 
 .idea
 out
+
+.mypy_cache
