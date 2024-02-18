@@ -41,6 +41,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "modules",
     "communities",
     "rest_framework",
     "silk",
