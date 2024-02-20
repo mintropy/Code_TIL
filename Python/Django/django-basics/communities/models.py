@@ -6,6 +6,9 @@ from modules.models import BaseModel
 class Community(BaseModel):
     title = models.CharField(max_length=100)
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Post(BaseModel):
     community = models.ForeignKey(
