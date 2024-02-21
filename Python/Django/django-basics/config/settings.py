@@ -11,25 +11,28 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-import random
-import string
 from pathlib import Path
+
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-chars = (
-    "".join([string.ascii_letters, string.digits, string.punctuation])
-    .replace("'", "")
-    .replace('"', "")
-    .replace("\\", "")
-)
-SECRET_KEY = "".join([random.SystemRandom().choice(chars) for _ in range(50)])
+# chars = (
+#     "".join([string.ascii_letters, string.digits, string.punctuation])
+#     .replace("'", "")
+#     .replace('"', "")
+#     .replace("\\", "")
+# )
+# SECRET_KEY = "".join([random.SystemRandom().choice(chars) for _ in range(50)])
+SECRET_KEY = env("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
