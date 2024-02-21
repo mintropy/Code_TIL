@@ -11,3 +11,11 @@ class CommunitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Community
         fields = "__all__"
+
+    def __init__(self, *args, **kwargs) -> None:
+        context = kwargs.get("context", None)
+        super().__init__(*args, **kwargs)
+        if context == "admin":
+            pass
+        elif context == "user":
+            pass
