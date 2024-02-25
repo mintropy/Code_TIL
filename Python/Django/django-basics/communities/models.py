@@ -16,3 +16,14 @@ class Post(BaseModel):
     )
     title = models.CharField(max_length=100)
     content = models.TextField()
+    likes = models.PositiveIntegerField(default=0)
+
+
+class PopularPost(Post):
+    class Meta:
+        proxy = True
+        ordering = ["-likes"]
+
+
+class AdminPost(Post):
+    fixed = models.BooleanField(default=False)

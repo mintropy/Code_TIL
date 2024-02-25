@@ -15,7 +15,11 @@ class CommunitySerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs) -> None:
         context = kwargs.get("context", None)
         super().__init__(*args, **kwargs)
+        exclude_fields = []
         if context == "admin":
-            pass
+            exclude_fields = ["new_community"]
         elif context == "user":
-            pass
+            exclude_fields = ["post_count", "created_at", "updated_at"]
+        print(self.fields)
+        for field_name in exclude_fields:
+            self.fields.pop(field_name)

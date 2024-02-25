@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from communities.models import Community, Post
+from communities.models import AdminPost, Community, Post
 
 # Register your models here.
 
@@ -13,3 +13,8 @@ class CommunityAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ["id", "title", "community"]
+
+
+@admin.register(AdminPost)
+class AdminPostAdmin(admin.ModelAdmin):
+    list_display = ["id", "title", "community", "fixed"]
