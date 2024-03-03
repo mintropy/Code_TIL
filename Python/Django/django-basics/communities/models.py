@@ -4,6 +4,7 @@ from modules.models import BaseModel
 
 
 class Community(BaseModel):
+    posts: models.QuerySet["Post"]
     title = models.CharField(max_length=100)
 
     def __str__(self) -> str:
@@ -18,11 +19,14 @@ class Post(BaseModel):
     content = models.TextField()
     likes = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        ordering = ["-created_at"]
+
 
 class PopularPost(Post):
     class Meta:
         proxy = True
-        ordering = ["-likes"]
+        ordering = ["-likes", "-created_at"]
 
 
 class AdminPost(Post):

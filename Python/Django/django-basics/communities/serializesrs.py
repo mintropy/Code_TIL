@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from communities.models import Community
+from communities.models import AdminPost, Community, Post
 
 
 class CommunitySerializer(serializers.ModelSerializer):
@@ -23,3 +23,15 @@ class CommunitySerializer(serializers.ModelSerializer):
         print(self.fields)
         for field_name in exclude_fields:
             self.fields.pop(field_name)
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ["id", "title", "content", "likes"]
+
+
+class AdminPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdminPost
+        fields = ["id", "title", "content", "likes", "fixed"]

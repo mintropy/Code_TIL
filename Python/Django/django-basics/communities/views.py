@@ -1,13 +1,18 @@
 from datetime import datetime, timedelta
 
 from django.db.models import BooleanField, Case, Count, Max, When
+from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from communities.models import Community
-from communities.serializesrs import CommunitySerializer
+from communities.models import AdminPost, Community, PopularPost, Post
+from communities.serializesrs import (
+    AdminPostSerializer,
+    CommunitySerializer,
+    PostSerializer,
+)
 
 
 class CommunityAPI(APIView, PageNumberPagination):  # type: ignore
@@ -73,4 +78,42 @@ class UserCommunityAPI(APIView, PageNumberPagination):  # type: ignore
         serializer = CommunitySerializer(
             paginated_communities, many=True, context="user"
         )
+        return self.get_paginated_response(serializer.data)
+
+
+class PostAPI(APIView, PageNumberPagination):  # type: ignore
+    def get(self, request: Request, community_id: str) -> Response:
+        print(community_id, type(community_id))
+        community = get_object_or_404(Community, id=community_id)
+        posts = Post.objects.filter(community=community)
+        paginated_posts = self.paginate_queryset(posts, request, view=self)
+        serializer = PostSerializer(paginated_posts, many=True)
+        return self.get_paginated_response(serializer.data)
+
+
+class PopularPostAPI(APIView, PageNumberPagination):  # type: ignore
+    def get(self, request: Request, community_id: str) -> Response:
+        community = get_object_or_404(Community, id=community_id)
+        popular_posts = PopularPost.objects.filter(community=community)
+        paginated_posts = self.paginate_queryset(popular_posts, request, view=self)
+        serializer = PostSerializer(paginated_posts, many=True)
+        return self.get_paginated_response(serializer.data)
+
+
+class AdminPostAPI(APIView, PageNumberPagination):  # type: ignore
+    def get(self, request: Request, community_id: str) -> Response:
+        community = get_object_or_404(Community, id=community_id)
+        posts = AdminPost.objects.filter(community=community)
+        fixed = request.query_params.get("fixed")
+        if fixed == "f":
+            posts = posts.filter(fixed=True)
+        elif fixed == "t":
+            posts = posts.filter(fixed=False)
+        elif fixed == "all":
+            pass
+        else:
+            return Response({"error": "invalid query parameter"}, status=400)
+        posts = posts.order_by("-created_at")
+        paginated_posts = self.paginate_queryset(posts, request, view=self)
+        serializer = AdminPostSerializer(paginated_posts, many=True)
         return self.get_paginated_response(serializer.data)
