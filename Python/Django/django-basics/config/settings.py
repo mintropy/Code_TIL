@@ -45,6 +45,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "modules",
+    "accounts",
     "communities",
     "rest_framework",
     "silk",
@@ -145,3 +146,5 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
+
+AUTH_USER_MODEL = "accounts.User"

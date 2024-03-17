@@ -31,3 +31,15 @@ class PopularPost(Post):
 
 class AdminPost(Post):
     fixed = models.BooleanField(default=False)
+
+
+class Reply(BaseModel):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="replies")
+    content = models.TextField()
+    likes = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return f"{self.post.title} - {self.content[:20]}"
