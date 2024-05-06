@@ -13,14 +13,20 @@ def time_it(func):
 
 
 @time_it
-def bubble_sort(array: list, print_detail: bool = False) -> list:
+def bubble_sort(
+    array: list, increasing: bool = True, print_detail: bool = False
+) -> list:
     n = len(array)
     for i in range(n):
         if print_detail:
             print(array)
         for j in range(0, n - i - 1):
-            if array[j] > array[j + 1]:
-                array[j], array[j + 1] = array[j + 1], array[j]
+            if increasing:
+                if array[j] > array[j + 1]:
+                    array[j], array[j + 1] = array[j + 1], array[j]
+            else:
+                if array[j] < array[j + 1]:
+                    array[j], array[j + 1] = array[j + 1], array[j]
     if print_detail:
         print(array)
     return array
@@ -33,3 +39,6 @@ if __name__ == "__main__":
 
     array2 = [randint(0, 100) for _ in range(5)]
     bubble_sort(array2, print_detail=True)
+
+    array3 = [randint(0, 100) for _ in range(5)]
+    bubble_sort(array2, increasing=False, print_detail=True)
