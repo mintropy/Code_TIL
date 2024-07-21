@@ -1,5 +1,5 @@
-import reflex as rx
+import reflex as rx  # type: ignore
 
 
-class AccountBook(rx.Model, table=True):
+class AccountBook(rx.Model, table=True):  # type: ignore
     amount: int
