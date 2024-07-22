@@ -1,6 +1,8 @@
 import reflex as rx
 from rxconfig import config
 
+# from reflex_sample_app.api.main import app as _app
+# from reflex_sample_app.api.main import main_api
 from reflex_sample_app.components.nav import navbar
 from reflex_sample_app.models.account_book import AccountBook
 from reflex_sample_app.pages.articles import articles
@@ -83,3 +85,11 @@ style = {"margin": "10px"}
 app = rx.App(style=style)
 app.add_page(index)
 app.add_page(articles)
+
+
+# app.api.api_route("", main_api)
+# app.api.add_route("/", _app)
+# app.api.add_api_route("/", main_api)
+@app.api.get("/")
+async def main_api():
+    return "Hello World"
