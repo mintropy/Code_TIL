@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from django.db.models import BooleanField, Case, Count, Max, When
 from django.shortcuts import get_object_or_404
@@ -17,7 +17,7 @@ from communities.serializesrs import (
 
 class CommunityAPI(APIView, PageNumberPagination):  # type: ignore
     def get(self, request: Request) -> Response:
-        seven_days_ago = datetime.now() - timedelta(days=7)
+        seven_days_ago = datetime.now(timezone(timedelta(hours=9))) - timedelta(days=7)
 
         communities = (
             Community.objects.all()
@@ -36,6 +36,20 @@ class CommunityAPI(APIView, PageNumberPagination):  # type: ignore
         paginated_communities = self.paginate_queryset(communities, request, view=self)
         serializer = CommunitySerializer(paginated_communities, many=True)
         return self.get_paginated_response(serializer.data)
+
+    def post(self, request: Request) -> Response:
+        serializer = CommunitySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+class CommunityDetailAPI(APIView):  # type: ignore
+    def get(self, request: Request, community_id: str) -> Response:
+        community = get_object_or_404(Community, id=community_id)
+        serializer = CommunitySerializer(community)
+        return Response(serializer.data)
 
 
 class AdminCommunityAPI(APIView, PageNumberPagination):  # type: ignore
@@ -80,6 +94,13 @@ class UserCommunityAPI(APIView, PageNumberPagination):  # type: ignore
         )
         return self.get_paginated_response(serializer.data)
 
+    def post(self, request: Request) -> Response:
+        serializer = CommunitySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
 
 class PostAPI(APIView, PageNumberPagination):  # type: ignore
     def get(self, request: Request, community_id: str) -> Response:
@@ -89,6 +110,15 @@ class PostAPI(APIView, PageNumberPagination):  # type: ignore
         paginated_posts = self.paginate_queryset(posts, request, view=self)
         serializer = PostSerializer(paginated_posts, many=True)
         return self.get_paginated_response(serializer.data)
+
+    def post(self, request: Request, community_id: str) -> Response:
+        community = get_object_or_404(Community, id=community_id)
+        request.data["community"] = community.id
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 
 class PopularPostAPI(APIView, PageNumberPagination):  # type: ignore

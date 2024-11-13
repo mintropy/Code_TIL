@@ -15,12 +15,20 @@ class Post(BaseModel):
     community = models.ForeignKey(
         Community, on_delete=models.SET_NULL, null=True, related_name="posts"
     )
+    post_no = models.IntegerField(default=None, null=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
     likes = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["community", "post_no"],
+                name="unique_community_post_no",
+                condition=models.Q(community__isnull=False),
+            )
+        ]
 
 
 class PopularPost(Post):
