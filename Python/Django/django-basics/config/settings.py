@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "modules",
     "accounts",
     "communities",
+    "todos",
     "rest_framework",
     "silk",
     "django.contrib.admin",
